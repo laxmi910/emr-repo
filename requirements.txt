@@ -1,0 +1,5 @@
+PyMySQL
+Flask
+jinja2
+SQLAlchemy==1.4.4
+cloud-sql-python-connector
