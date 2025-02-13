@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title></title>
+</head>
+<body>
+<style>
+ 
+ td {
+        width: 150px;
+        text-align: center;
+        border: 1px solid black;
+        padding: 5px;
+      }
+</style>
+<H1>Medical Record Update: </H1>
+<p>{{ message }}</p>
+<table>
+    <tbody>
+     {% for row in data %}   
+            <form action="/update-medical-record" method="POST"> 
+            <tr>
+                <td><label for="patient-id">Patient ID:</label></td>
+                <td>{{row[0]}}</td>
+                <input type="hidden" id="patient-id" name="patient-id" value="{{row[0]}}">
+            </tr>
+            <tr>
+                <td><label for="first_name">First Name:</label></td>
+                <td><input type="text" id="first-name" name="first-name" value="{{row[1]}}"></td>
+            </tr>
+            <tr>
+                <td><label for="last_name">Last Name:</label></td>
+                <td><input type="text" id="last-name" name="last-name" value="{{row[2]}}"></td>
+            </tr>
+            <tr>
+                <td><label for="dob">Date of Birth:</label></td>
+                <td><input type="text" id="dob" name="dob" value="{{row[3]}}"></td>
+            </tr>
+            <tr>
+                <td><label for="sex">Sex:</label></td>
+                <td><input type="text" id="sex" name="sex" value="{{row[4]}}"></td>
+            </tr>
+            <tr>
+                <td><label for="blood">Blood Type:</label></td>
+                <td><input type="text" id="blood-type" name="blood-type" value="{{row[5]}}"></td>
+            </tr>
+            <tr>
+                <td><label for="height">Height:</label></td>
+                <td><input type="text" id="height" name="height" value="{{row[6]}}"></td>
+            </tr>
+            <tr>
+                <td><label for="weight">Weight:</label></td>
+                <td><input type="text" id="weight" name="weight" value="{{row[7]}}"></td>
+            </tr>
+            <tr>
+                <td><label for="allergies">Allergies:</label></td>
+                <td><input type="text" id="allergies" name="allergies" value="{{row[8]}}"></td>
+            </tr>
+            <tr>
+                <td><label for="medications">Medications:</label></td>
+                <td><input type="text" id="medications" name="medications" value="{{row[9]}}"></td>
+            </tr>
+            <tr>
+                <td><label for="medical_conditions">Medical Conditions:</label></td>
+                <td><input type="text" id="medical-conditions" name="medical-conditions" value="{{row[10]}}"></td>
+            </tr>
+            <tr>
+                <td><label for="heart_rate">Heart Rate:</label></td>
+                <td><input type="text" id="heart-rate" name="heart-rate" value="{{row[11]}}"></td>
+            </tr>
+            <tr>
+                <td><label for="blood_pressure">Blood Pressure:</label></td>
+                <td><input type="text" id="blood-pressure" name="blood-pressure" value="{{row[12]}}"></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    <input type="submit" value="Update">
+    </form>
+
+</body>
+</html>

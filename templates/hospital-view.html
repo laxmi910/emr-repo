@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title></title>
+</head>
+<body>
+<style>
+ 
+ td {
+        width: 150px;
+        text-align: center;
+        border: 1px solid black;
+        padding: 5px;
+      }
+</style>
+<h1>Welcome {{ hospital_name }}!</h1>
+<h1>Here's a list of your patient:</h1>
+<p></p>
+<table>
+  <thead>
+    <tr>
+        <th>Patient ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th></th>
+    </tr>
+    </thead>    
+    <tbody>
+     {% for row in data %}    
+            <tr>
+                <td>{{row[0]}}</td>
+                <td>{{row[1]}}</td>
+                <td>{{row[2]}}</td>
+                <td><form action="/medical-record-update" method="POST">
+                    <input type="hidden" id="patient-id" name="patient-id" value="{{row[0]}}">
+                    <input type="submit" value="Update Medical Record">
+                </form></td>
+                <td><form action="/payment-record-update" method="POST">
+                    <input type="hidden" id="patient-id" name="patient-id" value="{{row[0]}}">
+                    <input type="submit" value="Update Payment Record">
+                </form></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>

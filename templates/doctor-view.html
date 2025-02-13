@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title></title>
+</head>
+<body>
+<style>
+ 
+ td {
+        width: 150px;
+        text-align: center;
+        border: 1px solid black;
+        padding: 5px;
+      }
+</style>
+<h1>Welcome {{ doctor_name }}!</h1>
+<h1>Here's a list of your patient:</h1>
+<p></p>
+<table>
+  <thead>
+    <tr>
+        <th>Patient ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th></th>
+    </tr>
+    </thead>    
+    <tbody>
+     {% for row in data %}    
+            <form action="/patient-history-view" method="POST">
+            <tr>
+                <td>{{row[0]}}</td>
+                <td>{{row[1]}}</td>
+                <td>{{row[2]}}</td>
+                <input type="hidden" id="first-name" name="first-name" value="{{row[1]}}">
+                <input type="hidden" id="last-name" name="last-name" value="{{row[2]}}">
+                <input type="hidden" id="doctor-name" name="doctor-name" value="{{doctor_name}}">
+                <td><input type="submit" value="View Medical History"></td>
+            </tr>
+            </form>
+        {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>

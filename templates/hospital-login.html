@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to the Patient Health Portal</title>
+    <style>
+        /* Style for the form container */
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+        }
+
+        /* Style for the form fields */
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: none;
+            border-bottom: 1px solid #ccc;
+        }
+
+        /* Style for the submit button */
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* Style for the submit button on hover */
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Patient Health Portal - Hospital login</h2>
+        <form action="/validate-hospital" method="POST">
+            <label for="hospital">Hospital Name:</label>
+            <input type="text" id="hospital-name" name="hospital-name" required>
+
+            <label for="password">Password:</label>
+            <input type="text" id="password" name="password" required>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>
+

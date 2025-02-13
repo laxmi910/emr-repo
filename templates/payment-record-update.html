@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title></title>
+</head>
+<body>
+<style>
+ 
+ td {
+        width: 150px;
+        text-align: center;
+        border: 1px solid black;
+        padding: 5px;
+      }
+</style>
+<H1>Payment Record Update: </H1>
+<p>{{ message }}</p>
+<table>
+    <tbody>
+     {% for row in data %}   
+            <form action="/update-payment-record" method="POST"> 
+            <tr>
+                <td><label for="patient-id">Patient ID:</label></td>
+                <td>{{row[0]}}</td>
+                <input type="hidden" id="patient-id" name="patient-id" value="{{row[0]}}">
+            </tr>
+            <tr>
+                <td><label for="first_name">First Name:</label></td>
+                <td><input type="text" id="first-name" name="first-name" value="{{row[1]}}"></td>
+            </tr>
+            <tr>
+                <td><label for="last_name">Last Name:</label></td>
+                <td><input type="text" id="last-name" name="last-name" value="{{row[2]}}"></td>
+            </tr>
+            <tr>
+                <td><label for="doctor_name">Doctor Name:</label></td>
+                <td><input type="text" id="doctor-name" name="doctor-name" value="{{row[13]}}"></td>
+            </tr>
+            <tr>
+                <td><label for="doctor_phone">Doctor Phone:</label></td>
+                <td><input type="text" id="doctor-phone" name="doctor-phone" value="{{row[14]}}"></td>
+            </tr>
+            <tr>
+                <td><label for="hospital_name">Hospital Name:</label></td>
+                <td><input type="text" id="hospital-name" name="hospital-name" value="{{row[16]}}"></td>
+            </tr>   
+            <tr>
+                <td><label for="hospital_phone">Hospital Phone:</label></td>
+                <td><input type="text" id="hospital-phone" name="hospital-phone" value="{{row[17]}}"></td>
+            </tr>
+            <tr>
+                <td><label for="insurance_provider">Insurance Provider:</label></td>
+                <td><input type="text" id="insurance-provider" name="insurance-provider" value="{{row[18]}}"></td>
+            </tr>     
+            <tr>
+                <td><label for="insurance_id">Insurance ID:</label></td>
+                <td><input type="text" id="insurance-id" name="insurance-id" value="{{row[19]}}"></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    <input type="submit" value="Update">
+    </form>
+
+</body>
+</html>
