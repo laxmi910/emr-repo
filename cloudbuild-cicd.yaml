@@ -1,0 +1,41 @@
+steps:
+# Step 1: Clone the repository
+- name: 'gcr.io/cloud-builders/git'
+  args: ['clone', 'https://github.com/your-repo.git']
+
+# Step 2: Set up authentication for GCP
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['auth', 'configure-docker']
+
+# Step 3: Build the Docker image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'us-central1-docker.pkg.dev/projectlaxmi09/repo1/my-application1@sha256:3359a6ca0703b44c77d9878d3db6edb5122a1bce2fc9895d067a3a99a7874d07', '.']
+
+# Step 4: Push the image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'us-central1-docker.pkg.dev/projectlaxmi09/repo1/my-application1@sha256:3359a6ca0703b44c77d9878d3db6edb5122a1bce2fc9895d067a3a99a7874d07']
+
+# Step 5: Run database migrations (if required)
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['sql', 'import', 'csv', 'sql1', 'gs://bucket2324/patient_data.csv', '--database=patient_db']
+
+# Step 6: Update Kubernetes deployment file with new image tag
+- name: 'gcr.io/cloud-builders/sed'
+  args: ['-i', "s|gcr.io/.*/patient-app:.*|us-central1-docker.pkg.dev/projectlaxmi09/repo1/my-application1@sha256:3359a6ca0703b44c77d9878d3db6edb5122a1bce2fc9895d067a3a99a7874d07", 'deployment.yaml']
+
+# Step 7: Deploy updated application to GKE
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: ['apply', '-f', 'deployment.yaml']
+  env:
+  - 'CLOUDSDK_COMPUTE_REGION=us-central1'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=my-cluster'
+
+# Step 8: Verify deployment
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: ['rollout', 'status', 'deployment/patient-app']
+  env:
+  - 'CLOUDSDK_COMPUTE_REGION=us-central1'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-1'
+
+images:
+- 'us-central1-docker.pkg.dev/projectlaxmi09/repo1/my-application1@sha256:3359a6ca0703b44c77d9878d3db6edb5122a1bce2fc9895d067a3a99a7874d07'
